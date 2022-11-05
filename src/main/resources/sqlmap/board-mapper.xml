@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="board">
+<!-- use table 'notice' in DB -->
 
 <!-- total board list  -->
 <select id='list' resultType='board.BoardVO'>
-	select * from board order by 1 desc
+select *
+from 
+(
+select row_number() over (order by root, step desc) no, n.*
+from notice n
+)
+order by no desc;
 </select>
 
 <!-- for board paging -->
 <select id='countTotal' resultType='integer'>
-	select count(*) from board
+	select count(*) from notice
 </select>
 
 <!-- for board one page -->
@@ -22,14 +29,46 @@
 
 <!-- for board one page -->
 <select id='list_ten' resultType='board.BoardVO'>
-select row_number() over(order by b.id) no, b.*
-from board b
+select *
+from 
+(
+select row_number() over (order by root, step desc) no, n.*
+from notice n
+)
+where no between #{beginList} and #{endList}
 order by no desc
 </select>
 
 <insert id='insertPost'>
-insert into board (title, content, writer)
+insert into notice (title, content, writer)
 values (#{title, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR}, #{writer, jdbcType=VARCHAR})
 </insert>
+
+<update id='readcnt'>
+update notice set readcnt = readcnt + 1 where id = #{id}
+</update>
+
+<select id='detail' resultType='board.BoardVO'>
+select * from notice where id = #{id}
+</select>
+
+<insert id="insertReply">
+<![CDATA[
+{
+call declare begin
+
+update notice set step = step +1 
+where root = #{root} and step  > #{step};
+
+insert into notice 
+( title, content, writer, root, step, indent )
+values ( #{title}, #{content}, #{writer},
+		#{root}, #{step}+1, #{indent}+1 );
+
+end
+}	
+]]> 	
+</insert>
+
 
 </mapper>

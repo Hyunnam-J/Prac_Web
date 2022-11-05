@@ -4,10 +4,9 @@ import java.sql.Date;
 
 public class BoardVO {
 	
-	int id, readcnt;
+	int id, readcnt, root, step, indent;
 	String title, content, writer;
 	Date writedate;
-	
 	public int getId() {
 		return id;
 	}
@@ -19,6 +18,24 @@ public class BoardVO {
 	}
 	public void setReadcnt(int readcnt) {
 		this.readcnt = readcnt;
+	}
+	public int getRoot() {
+		return root;
+	}
+	public void setRoot(int root) {
+		this.root = root;
+	}
+	public int getStep() {
+		return step;
+	}
+	public void setStep(int step) {
+		this.step = step;
+	}
+	public int getIndent() {
+		return indent;
+	}
+	public void setIndent(int indent) {
+		this.indent = indent;
 	}
 	public String getTitle() {
 		return title;
@@ -44,6 +61,8 @@ public class BoardVO {
 	public void setWritedate(Date writedate) {
 		this.writedate = writedate;
 	}
+	
+	
 	
 	
 		

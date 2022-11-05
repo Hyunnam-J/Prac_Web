@@ -37,6 +37,17 @@
 	font-size: 16px;
 }
 
+form a{
+	font-weight: normal;
+}
+
+#l-table{
+	width: 700px;
+}
+#l-table td:nth-child(2){
+	padding-left: 5px;
+}
+
 </style>
 
 </head>
@@ -56,26 +67,24 @@
 	</div>
 	<form id='form' action="list.bo" method='get'>
 		<input type='hidden' name='curPage' value='' id='curPage'>
-		<table style='width:700px'>
+		<table id='l-table'>
 			<colgroup>
 				<col width='70px'>
-				<col width='150px'>
-				<col width='200px'>
+				<col width='350px'>
 				<col width='100px'>
 				<col width='150px'>
 			</colgroup>
 			<tr>
 				<th>No</th>
 				<th>Title</th>
-				<th>Content</th>
 				<th>Writer</th>
 				<th>Date created</th>
 			</tr>
 			<c:forEach items='${pageVo.list}' var='p'>
 				<tr>
 					<td>${p.id}</td>
-					<td>${p.title}</td>
-					<td>${p.content}</td>
+					<td style='text-align: left'><a href='detail.bo?id=${p.id}&curPage=${pageVo.curPage}'>
+					<span style='margin-right:${15*p.indent}px'></span>${p.title}</a></td>
 					<td>${p.writer}</td>
 					<td>${p.writedate}</td>
 				</tr>

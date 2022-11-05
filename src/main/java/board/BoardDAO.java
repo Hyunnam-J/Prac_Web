@@ -30,4 +30,19 @@ public class BoardDAO implements BoardService{
 		return sql.insert("board.insertPost", vo);
 	}
 
+	@Override
+	public int readcnt(int id) {
+		return sql.update("board.readcnt", id);
+	}
+
+	@Override
+	public BoardVO detail(int id) {
+		return sql.selectOne("board.detail", id);
+	}
+
+	@Override
+	public int insertReply(BoardVO vo) {
+		return sql.insert("board.insertReply", vo);
+	}
+
 }

@@ -29,4 +29,19 @@ public class BoardServiceImpl implements BoardService{
 		return dao.insertPost(vo);
 	}
 
+	@Override
+	public int readcnt(int id) {
+		return dao.readcnt(id);
+	}
+
+	@Override
+	public BoardVO detail(int id) {
+		return dao.detail(id);
+	}
+
+	@Override
+	public int insertReply(BoardVO vo) {
+		return dao.insertReply(vo);
+	}
+
 }

@@ -34,6 +34,30 @@ public class BoardController {
 		service.insertPost(vo);
 		return "redirect:list.bo";
 	}
+	
+	@RequestMapping("/detail.bo")
+	public String detail(int id, Model model, BoardPageVO pageVo) {
+		//readcnt + 1
+		service.readcnt(id);
+		
+		//for view when clicked
+		model.addAttribute("vo", service.detail(id));
+		model.addAttribute("pageVo", pageVo);
+		return "board/detail";
+	}
+	
+	@RequestMapping("/reply.bo")
+	public String reply(Model model, int id, BoardPageVO pageVo) {
+		model.addAttribute("vo", service.detail(id));
+		model.addAttribute("pageVo", pageVo);
+		return "board/reply";
+	}
+	
+	@RequestMapping("/insertReply.bo")
+	public String insertReply(BoardVO vo, BoardPageVO pageVo) {
+		service.insertReply(vo);
+		return "redirect:list.bo?curPage="+ pageVo.getCurPage();
+	}
 
 	
 
