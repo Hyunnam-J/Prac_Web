@@ -45,4 +45,9 @@ public class BoardDAO implements BoardService{
 		return sql.insert("board.insertReply", vo);
 	}
 
+	@Override
+	public int delete(int id) {
+		return sql.delete("board.delete", id);
+	}
+
 }

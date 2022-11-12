@@ -61,7 +61,9 @@
 		<tr><th height='40px'>file</th>
 			<td colspan='6'>
 			<c:if test="${not empty vo.filename}">
-			<span id='file_span' class="material-symbols-outlined">draft</span>${vo.filename}
+			<span class="material-symbols-outlined" 
+			style='cursor: pointer'
+			id='download'>draft</span>${vo.filename}
 			</c:if>
 			</td>
 			
@@ -71,6 +73,13 @@
 		<input type='button' class='btn-fill' value='modify'>
 		<input type='button' class='btn-fill' value='reply' onclick='location="reply.bo?id=${vo.id}&curPage=${pageVo.curPage}"'>
 		<input type='button' class='btn-empty' value='back' onclick='location="list.bo"'>
+		<input type='button' class='btn-empty' value='delete' onclick='location="delete.bo?id=${vo.id}&curPage=${pageVo.curPage}"'>
 	</div>
 </body>
+<script>
+document.querySelector('#download').onclick = function(){
+	location="fileDownload.no?id=${vo.id}&url=" + location.href; 	
+}
+</script>
+
 </html>

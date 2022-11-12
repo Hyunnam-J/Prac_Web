@@ -44,4 +44,10 @@ public class BoardServiceImpl implements BoardService{
 		return dao.insertReply(vo);
 	}
 
+	@Override
+	public int delete(int id) {
+		return dao.delete(id);
+		
+	}
+
 }

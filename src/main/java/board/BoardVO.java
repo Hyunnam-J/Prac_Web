@@ -9,6 +9,7 @@ public class BoardVO {
 	Date writedate;
 	
 	
+	
 	public String getFilename() {
 		return filename;
 	}

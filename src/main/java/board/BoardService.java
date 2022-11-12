@@ -12,5 +12,6 @@ public interface BoardService {
 	int readcnt(int id);
 	BoardVO detail(int id);
 	int insertReply(BoardVO vo);
+	int delete(int id);
 
 }
