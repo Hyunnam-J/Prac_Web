@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -25,7 +26,7 @@ public class HomeController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model, HttpSession session) {
+	public String home(Locale locale, Model model, HttpSession session, HttpServletRequest req) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
 		Date date = new Date();
@@ -35,7 +36,13 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		session.setAttribute("category", "");
+		
+		System.out.println("contextPath: " + req.getContextPath());
+		System.out.println("getRequestURL: " + req.getRequestURL().toString());
+		System.out.println("getServletPath: " + req.getServletPath());
 		return "index";
 	}
+	
+	
 	
 }

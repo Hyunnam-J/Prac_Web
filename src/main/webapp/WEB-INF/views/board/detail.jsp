@@ -9,7 +9,7 @@
 <style>
 #d-table{
 	width: 800px;
-	height: 300px;
+	height: 340px;
 }
 #d-table th, #d-table td{
 	padding: 5px;
@@ -57,6 +57,14 @@
 		</tr>
 		<tr><th height='200px'>content</th>
 			<td colspan='6'>${vo.content}</td>
+		</tr>
+		<tr><th height='40px'>file</th>
+			<td colspan='6'>
+			<c:if test="${not empty vo.filename}">
+			<span id='file_span' class="material-symbols-outlined">draft</span>${vo.filename}
+			</c:if>
+			</td>
+			
 		</tr>
 	</table>
 	<div id='d-btn'>

@@ -70,15 +70,17 @@ form a{
 		<table id='l-table'>
 			<colgroup>
 				<col width='70px'>
-				<col width='350px'>
+				<col width='300px'>
 				<col width='100px'>
 				<col width='150px'>
+				<col width='50px'>
 			</colgroup>
 			<tr>
 				<th>No</th>
 				<th>Title</th>
 				<th>Writer</th>
 				<th>Date created</th>
+				<th>File</th>
 			</tr>
 			<c:forEach items='${pageVo.list}' var='p'>
 				<tr>
@@ -87,6 +89,11 @@ form a{
 					<span style='margin-right:${15*p.indent}px'></span>${p.title}</a></td>
 					<td>${p.writer}</td>
 					<td>${p.writedate}</td>
+					<td>
+						<c:if test="${not empty p.filename}">
+						<span id='file_span' class="material-symbols-outlined">draft</span>
+						</c:if>
+					</td>
 				</tr>
 			</c:forEach>
 		</table>
